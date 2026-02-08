@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,105 +10,127 @@
     <link rel="stylesheet" href="../style/style.css">
     <link rel="icon" href="../images/logo.jpg">
     <style>
-       
-       
         /* Main Content - Starts immediately after navbar */
-        .checkout-container { 
-            max-width: 1200px; 
-            margin: 120px auto; 
-            display: grid; 
-            grid-template-columns: 1fr 380px; 
-            gap: 30px; 
-            padding-top: 0; /* No extra top padding */
+        .checkout-container {
+            max-width: 1200px;
+            margin: 120px auto;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 30px;
+            padding-top: 0;
+            /* No extra top padding */
         }
-        
-        @media (max-width: 992px) { 
-            .checkout-container { 
-                grid-template-columns: 1fr; 
-                gap: 25px; 
-                max-width: 100%; 
-            } 
+
+        @media (max-width: 992px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                max-width: 100%;
+            }
         }
-        @media (max-width: 768px) { 
-            .checkout-container { gap: 20px; padding: 0 5px; } 
+
+        @media (max-width: 768px) {
+            .checkout-container {
+                gap: 20px;
+                padding: 0 5px;
+            }
         }
 
         /* Order Summary */
-        .order-summary { 
-            background: rgba(255,255,255,0.95); 
-            backdrop-filter: blur(20px); 
-            border-radius: 20px; 
-            padding: 30px; 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.12); 
+        .order-summary {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
             height: fit-content;
         }
-        .summary-header { 
-            text-align: center; 
-            margin-bottom: 30px; 
+
+        .summary-header {
+            text-align: center;
+            margin-bottom: 30px;
         }
-        .summary-header h2 { 
-            color: #222; 
-            font-size: 26px; 
-            margin-bottom: 5px; 
+
+        .summary-header h2 {
+            color: #222;
+            font-size: 26px;
+            margin-bottom: 5px;
             font-weight: 700;
         }
-        .summary-header p { color: #666; font-size: 15px; }
-        .order-item { 
-            display: flex; 
-            align-items: flex-start; 
-            padding: 20px 0; 
-            border-bottom: 1px solid #f0f0f0; 
-            transition: all 0.3s ease; 
+
+        .summary-header p {
+            color: #666;
+            font-size: 15px;
         }
-        .order-item:hover { 
-            background: rgba(0,123,255,0.06); 
-            border-radius: 12px; 
-            padding-left: 10px; 
-            padding-right: 10px; 
+
+        .order-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 20px 0;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
         }
-        .order-item:last-child { border-bottom: none; }
-        .order-img { 
-            width: 75px; 
-            height: 75px; 
-            object-fit: cover; 
-            border-radius: 15px; 
-            margin-right: 20px; 
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15); 
+
+        .order-item:hover {
+            background: rgba(0, 123, 255, 0.06);
+            border-radius: 12px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-img {
+            width: 75px;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-right: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
             flex-shrink: 0;
         }
-        .order-details { flex: 1; }
-        .order-details h4 { 
-            font-size: 17px; 
-            color: #1a1a1a; 
-            margin-bottom: 6px; 
+
+        .order-details {
+            flex: 1;
+        }
+
+        .order-details h4 {
+            font-size: 17px;
+            color: #1a1a1a;
+            margin-bottom: 6px;
             font-weight: 600;
         }
-        .order-details p { 
-            color: #007bff; 
-            font-weight: 700; 
-            font-size: 16px; 
+
+        .order-details p {
+            color: #007bff;
+            font-weight: 700;
+            font-size: 16px;
         }
-        
-        .summary-total { 
-            margin-top: 30px; 
-            padding: 25px; 
-            background: linear-gradient(135deg, rgba(0,123,255,0.05), rgba(0,86,179,0.05)); 
-            border-radius: 15px; 
-            border: 2px solid rgba(0,123,255,0.1);
+
+        .summary-total {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.05), rgba(0, 86, 179, 0.05));
+            border-radius: 15px;
+            border: 2px solid rgba(0, 123, 255, 0.1);
         }
-        .summary-row { 
-            display: flex; 
-            justify-content: space-between; 
-            margin: 15px 0; 
-            font-size: 18px; 
-            font-weight: 600; 
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            font-size: 18px;
+            font-weight: 600;
         }
-        .total-row { 
-            font-size: 24px !important; 
-            font-weight: 800 !important; 
-            color: #007bff !important; 
-            border-top: 2px solid #007bff; 
-            padding-top: 15px; 
+
+        .total-row {
+            font-size: 24px !important;
+            font-weight: 800 !important;
+            color: #007bff !important;
+            border-top: 2px solid #007bff;
+            padding-top: 15px;
             margin-top: 15px;
         }
 
@@ -117,218 +140,306 @@
             padding: 60px 30px;
             color: #666;
         }
-        .empty-cart i { font-size: 60px; color: #ddd; margin-bottom: 20px; }
-        .empty-cart h3 { font-size: 24px; margin-bottom: 12px; color: #222; }
-        .empty-cart p { font-size: 16px; margin-bottom: 25px; }
-        .empty-cart a { 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 10px;
-            padding: 15px 30px; 
-            background: linear-gradient(135deg, #007bff, #0056b3); 
-            color: white; 
-            text-decoration: none; 
-            border-radius: 12px; 
-            font-weight: 600; 
-            font-size: 16px;
-            transition: all 0.3s ease; 
-            box-shadow: 0 8px 25px rgba(0,123,255,0.3);
+
+        .empty-cart i {
+            font-size: 60px;
+            color: #ddd;
+            margin-bottom: 20px;
         }
-        .empty-cart a:hover { 
-            transform: translateY(-3px); 
-            box-shadow: 0 15px 35px rgba(0,123,255,0.4);
+
+        .empty-cart h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: #222;
+        }
+
+        .empty-cart p {
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .empty-cart a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+        }
+
+        .empty-cart a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 123, 255, 0.4);
         }
 
         /* Checkout Form */
-        .checkout-form { 
-            background: rgba(255,255,255,0.95); 
-            backdrop-filter: blur(20px); 
-            border-radius: 20px; 
-            padding: 35px; 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.12); 
-            height: fit-content; 
+        .checkout-form {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+            height: fit-content;
         }
-        .checkout-form h3 { 
-            margin-bottom: 30px; 
-            color: #1a1a1a; 
-            font-size: 24px; 
+
+        .checkout-form h3 {
+            margin-bottom: 30px;
+            color: #1a1a1a;
+            font-size: 24px;
             font-weight: 700;
-            display: flex; 
-            align-items: center; 
-            gap: 12px; 
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
-        .form-group { margin-bottom: 25px; }
-        .form-group label { 
-            display: flex; 
-            align-items: center; 
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: flex;
+            align-items: center;
             gap: 8px;
-            margin-bottom: 10px; 
-            font-weight: 600; 
-            color: #222; 
-            font-size: 15px; 
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #222;
+            font-size: 15px;
         }
-        .form-group input, 
-        .form-group textarea { 
-            width: 100%; 
-            padding: 18px 20px; 
-            border: 2px solid #e8e8e8; 
-            border-radius: 15px; 
-            font-size: 16px; 
-            transition: all 0.3s ease; 
-            font-family: inherit; 
-            background: rgba(255,255,255,0.9); 
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 18px 20px;
+            border: 2px solid #e8e8e8;
+            border-radius: 15px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.9);
         }
-        .form-group input:focus, 
-        .form-group textarea:focus { 
-            outline: none; 
-            border-color: #007bff; 
-            box-shadow: 0 0 0 4px rgba(0,123,255,0.15); 
-            background: white; 
-            transform: translateY(-2px); 
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.15);
+            background: white;
+            transform: translateY(-2px);
         }
 
         /* Payment Methods - Talha details ONLY in EasyPaisa */
-        .payment-methods { display: flex; gap: 18px; margin: 25px 0; flex-wrap: wrap; }
-        .payment-option { 
-            flex: 1; 
-            min-width: 160px; 
-            padding: 25px 20px; 
-            border: 2px solid #e0e0e0; 
-            border-radius: 18px; 
-            text-align: center; 
-            cursor: pointer; 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-            background: white; 
-            position: relative; 
+        .payment-methods {
+            display: flex;
+            gap: 18px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        .payment-option {
+            flex: 1;
+            min-width: 160px;
+            padding: 25px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 18px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            position: relative;
             overflow: hidden;
         }
+
         .payment-option::before {
             content: '';
             position: absolute;
-            top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
             transition: left 0.5s;
         }
-        .payment-option:hover::before { left: 100%; }
-        .payment-option:hover { 
-            border-color: #007bff; 
-            transform: translateY(-5px); 
-            box-shadow: 0 20px 40px rgba(0,123,255,0.25); 
+
+        .payment-option:hover::before {
+            left: 100%;
         }
-        .payment-option.selected { 
-            border-color: #007bff; 
-            background: linear-gradient(135deg, #007bff, #0056b3); 
-            color: white; 
-            transform: translateY(-5px); 
-            box-shadow: 0 20px 50px rgba(0,123,255,0.35); 
+
+        .payment-option:hover {
+            border-color: #007bff;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 123, 255, 0.25);
         }
-        .payment-icon { 
-            font-size: 32px; 
-            margin-bottom: 12px; 
-            display: block; 
+
+        .payment-option.selected {
+            border-color: #007bff;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 123, 255, 0.35);
         }
-        .payment-option strong { 
-            display: block; 
-            font-size: 16px; 
+
+        .payment-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .payment-option strong {
+            display: block;
+            font-size: 16px;
             font-weight: 700;
             margin-bottom: 12px;
         }
-        
+
         /* EasyPaisa Talha Details - ONLY shows here */
-        .easypaisa-details { 
-            font-size: 13px; 
-            background: rgba(255,255,255,0.9); 
-            border-radius: 10px; 
-            padding: 12px; 
-            margin-top: 12px; 
-            display: none; 
+        .easypaisa-details {
+            font-size: 13px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 12px;
+            display: none;
         }
-        .easypaisa-details div { 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            margin-bottom: 8px; 
-            padding: 6px 8px; 
-            background: rgba(0,123,255,0.05); 
-            border-radius: 8px; 
+
+        .easypaisa-details div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            padding: 6px 8px;
+            background: rgba(0, 123, 255, 0.05);
+            border-radius: 8px;
             font-size: 12px;
         }
-        .easypaisa-details div:last-child { margin-bottom: 0; }
+
+        .easypaisa-details div:last-child {
+            margin-bottom: 0;
+        }
+
         .copy-btn {
-            color: #007bff; 
-            cursor: pointer; 
-            padding: 4px 8px; 
-            border-radius: 6px; 
-            transition: all 0.3s ease; 
+            color: #007bff;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
             font-size: 11px;
         }
-        .copy-btn:hover { 
-            background: rgba(0,123,255,0.1); 
-            transform: scale(1.1); 
+
+        .copy-btn:hover {
+            background: rgba(0, 123, 255, 0.1);
+            transform: scale(1.1);
         }
-        .copied { 
-            color: #28a745 !important; 
-            background: rgba(40,167,69,0.2) !important; 
-            animation: pulse 0.6s ease-in-out; 
+
+        .copied {
+            color: #28a745 !important;
+            background: rgba(40, 167, 69, 0.2) !important;
+            animation: pulse 0.6s ease-in-out;
         }
-        @keyframes pulse { 
-            0%, 100% { transform: scale(1); } 
-            50% { transform: scale(1.15); } 
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
         }
 
         /* Submit Button */
-        .submit-order { 
-            width: 100%; 
-            padding: 22px; 
-            background: linear-gradient(135deg, #007bff, #0056b3); 
-            color: white; 
-            border: none; 
-            border-radius: 18px; 
-            font-size: 18px; 
-            font-weight: 700; 
-            cursor: pointer; 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-            margin-top: 15px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 12px; 
-            position: relative; 
+        .submit-order {
+            width: 100%;
+            padding: 22px;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            border: none;
+            border-radius: 18px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            position: relative;
             overflow: hidden;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
+
         .submit-order::before {
             content: '';
             position: absolute;
-            top: 50%; left: 50%;
-            width: 0; height: 0;
-            background: rgba(255,255,255,0.3);
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             transform: translate(-50%, -50%);
             transition: all 0.6s;
         }
-        .submit-order:hover { 
-            transform: translateY(-4px); 
-            box-shadow: 0 25px 50px rgba(0,123,255,0.45); 
-        }
-        .submit-order:hover::before {
-            width: 300px; height: 300px;
-        }
-        .submit-order:active { transform: translateY(-2px); }
 
-        @media (max-width: 768px) { 
-            .order-summary, .checkout-form { padding: 25px 20px; } 
-            .payment-methods { flex-direction: column; gap: 15px; }
-            .payment-option { min-width: auto; padding: 20px; }
-            .checkout-container { padding: 0 10px; }
+        .submit-order:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 50px rgba(0, 123, 255, 0.45);
         }
-        @media (max-width: 480px) { 
-            .order-img { width: 60px; height: 60px; margin-right: 15px; }
-            .summary-header h2 { font-size: 22px; }
+
+        .submit-order:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .submit-order:active {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+
+            .order-summary,
+            .checkout-form {
+                padding: 25px 20px;
+            }
+
+            .payment-methods {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .payment-option {
+                min-width: auto;
+                padding: 20px;
+            }
+
+            .checkout-container {
+                padding: 0 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .order-img {
+                width: 60px;
+                height: 60px;
+                margin-right: 15px;
+            }
+
+            .summary-header h2 {
+                font-size: 22px;
+            }
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <header class="landing-navbar">
@@ -385,7 +496,8 @@
                 </div>
                 <div class="form-group">
                     <label><i class="fas fa-map-marker-alt"></i> Complete Address *</label>
-                    <textarea id="customer-address" rows="3" required placeholder="House #, Street, Area, City, Landmark"></textarea>
+                    <textarea id="customer-address" rows="3" required
+                        placeholder="House #, Street, Area, City, Landmark"></textarea>
                 </div>
                 <div class="form-group">
                     <label><i class="fas fa-credit-card"></i> Payment Method *</label>
@@ -397,12 +509,14 @@
                                 <div>
                                     <span>Name:</span>
                                     <span id="easypaisa-name">Muhammad Talha</span>
-                                    <i class="fas fa-copy copy-btn" onclick="copyToClipboard('easypaisa-name')" title="Copy Name">📋</i>
+                                    <i class="fas fa-copy copy-btn" onclick="copyToClipboard('easypaisa-name')"
+                                        title="Copy Name">📋</i>
                                 </div>
                                 <div>
                                     <span>Number:</span>
                                     <span id="easypaisa-number">03437403940</span>
-                                    <i class="fas fa-copy copy-btn" onclick="copyToClipboard('easypaisa-number')" title="Copy Number">📋</i>
+                                    <i class="fas fa-copy copy-btn" onclick="copyToClipboard('easypaisa-number')"
+                                        title="Copy Number">📋</i>
                                 </div>
                             </div>
                         </div>
@@ -419,108 +533,149 @@
             </form>
         </div>
     </div>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Remove external script conflict
-    const externalScript = document.querySelector('script[src="./js-folder/script.js"]');
-    if (externalScript) externalScript.remove();
+ <script>
+    // Load cart data with fallback
+    let cart = JSON.parse(localStorage.getItem('currentOrder') || localStorage.getItem('cart') || '[]');
+    const orderItems = document.getElementById('order-items');
+    let subtotal = 0;
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const productData = JSON.parse(decodeURIComponent(urlParams.get('product') || '{}'));
-    const isSingleProduct = productData.name;
-    
-    const price = parseInt((productData.price || '0').replace(/[^\d]/g, ''));
-    const quantityInput = document.getElementById('quantity');
-    const DELIVERY_CHARGE = 249;
-
-    // Set product info
-    if (isSingleProduct) {
-        document.getElementById('productImg').src = productData.image || '';
-        document.getElementById('productName').textContent = productData.name || 'Product';
-        document.getElementById('productPrice').textContent = `PKR ${price.toLocaleString()}`;
+    // Function to fix image paths
+    function fixImagePath(imagePath) {
+        // If absolute URL or data URL, return as is
+        if (imagePath.startsWith('http') || imagePath.startsWith('data:')) {
+            return imagePath;
+        }
+        // Fix relative paths based on current location
+        return imagePath.startsWith('../images/') ? imagePath : '../images/' + imagePath;
     }
 
-    // TOTAL UPDATE FUNCTION
-    function updateTotal() {
-        const qty = parseInt(quantityInput.value) || 1;
-        const subtotal = price * qty;
-        const grandTotal = subtotal + DELIVERY_CHARGE;
-        
-        // Update ALL price displays
-        document.getElementById('subtotalPrice').textContent = `PKR ${subtotal.toLocaleString()}`;
-        document.getElementById('grandTotal').textContent = `PKR ${grandTotal.toLocaleString()}`;
-        document.getElementById('totalPrice').textContent = `PKR ${grandTotal.toLocaleString()}`;
+    // Handle empty cart
+    if (cart.length === 0) {
+        orderItems.innerHTML = `
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <h3>Your Cart is Empty</h3>
+                <p>Please add some items to place an order</p>
+                <a href="../store/store.html">
+                    <i class="fas fa-shop"></i> Continue Shopping
+                </a>
+            </div>
+        `;
+        document.getElementById('summary-total-section').style.display = 'none';
+    } else {
+        // Render order items with fixed paths
+        cart.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            subtotal += itemTotal;
+            
+            // Fix image path
+            const fixedImage = fixImagePath(item.image);
+            
+            orderItems.innerHTML += `
+                <div class="order-item">
+                    <img src="${fixedImage}" class="order-img" alt="${item.name}" 
+                         onerror="this.src='../images/no-image.jpg'; this.alt='No image available'">
+                    <div class="order-details">
+                        <h4>${item.name}</h4>
+                        <p>PKR ${item.price.toLocaleString()} × ${item.quantity} = PKR ${itemTotal.toLocaleString()}</p>
+                    </div>
+                </div>
+            `;
+        });
+
+        // Update totals
+        const delivery = 249;
+        document.getElementById('summary-subtotal').textContent = `PKR ${subtotal.toLocaleString()}`;
+        document.getElementById('summary-delivery').textContent = `PKR ${delivery}`;
+        document.getElementById('summary-total').textContent = `PKR ${(subtotal + delivery).toLocaleString()}`;
     }
 
-    quantityInput.addEventListener('input', updateTotal);
-    updateTotal(); // Initial load
-
-    // Payment details
-    const paymentInfo = {
-        "Cash on Delivery": "<strong>Cash on Delivery</strong> Pay cash when your order arrives.",
-        "EasyPaisa": "<strong>EasyPaisa</strong> Name: Muhammad Talha<br>Number: <span class='copy-number' data-original='0343-7403940' style='cursor:pointer;color:#2563eb;font-weight:600;'>0343-7403940</span>"
-    };
-
-    document.querySelectorAll('input[name="payment"]').forEach(radio => {
-        radio.addEventListener('change', function () {
-            const paymentDetails = document.getElementById('paymentDetails');
-            paymentDetails.style.display = 'block';
-            paymentDetails.innerHTML = paymentInfo[this.value];
+    // Payment selection - Fixed EasyPaisa auto-fill
+    document.querySelectorAll('.payment-option').forEach(option => {
+        option.addEventListener('click', function() {
+            document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+            document.getElementById('easypaisa-details').style.display = 'none';
+            
+            this.classList.add('selected');
+            document.getElementById('selected-payment').value = this.dataset.method;
+            
+            // Auto-fill ONLY for EasyPaisa
+            if (this.dataset.method === 'easypaisa') {
+                document.getElementById('customer-name').value = 'Muhammad Talha';
+                document.getElementById('customer-phone').value = '03437403940';
+                document.getElementById('easypaisa-details').style.display = 'block';
+            }
         });
     });
 
-    // ✅ PERFECT WHATSAPP FUNCTION
-    document.getElementById('orderForm').addEventListener('submit', function (e) {
+    // Copy to clipboard function
+    function copyToClipboard(elementId) {
+        const text = document.getElementById(elementId).textContent;
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = event.target;
+            btn.classList.add('copied');
+            const originalTitle = btn.title;
+            btn.title = 'Copied!';
+            setTimeout(() => {
+                btn.classList.remove('copied');
+                btn.title = originalTitle;
+            }, 2000);
+        }).catch(() => {
+            alert('Copy failed! Please select manually.');
+        });
+    }
+
+    // WhatsApp form submission - FIXED
+    document.getElementById('checkout-form').addEventListener('submit', function(e) {
         e.preventDefault();
         
-        const name = document.getElementById('customerName').value;
-        const phone = document.getElementById('customerPhone').value;
-        const address = document.getElementById('customerAddress').value;
-        const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
-        const qty = quantityInput.value;
-        const subtotal = parseInt(document.getElementById('subtotalPrice').textContent.replace(/[^\d]/g, ''));
-        
+        const name = document.getElementById('customer-name').value;
+        const phone = document.getElementById('customer-phone').value;
+        const address = document.getElementById('customer-address').value;
+        const payment = document.getElementById('selected-payment').value;
+
+        if (!payment) {
+            alert('⚠️ Please select a payment method!');
+            return;
+        }
+        if (cart.length === 0) {
+            alert('⚠️ Cart is empty!');
+            return;
+        }
+
+        // WhatsApp message
         let message = `🛒 *NEW ORDER - VLA Mart*\n\n`;
-        message += `👤 *Name:* ${name}\n`;
-        message += `📱 *Phone:* ${phone}\n`;
-        message += `📍 *Address:* ${address}\n`;
-        message += `💳 *Payment:* ${paymentMethod}\n\n`;
+        message += `👤 *Name:* ${name}\n📱 *Phone:* ${phone}\n📍 *Address:* ${address}\n`;
+        message += `💳 *Payment:* ${payment === 'easypaisa' ? 'EasyPaisa' : 'Cash on Delivery'}\n\n`;
         message += `🛍️ *ORDER ITEMS:*\n`;
-        message += `• ${document.getElementById('productName').textContent} (${qty}x) - PKR ${subtotal.toLocaleString()}\n`;
+        cart.forEach(item => {
+            message += `• ${item.name} (${item.quantity}x) - PKR ${(item.price * item.quantity).toLocaleString()}\n`;
+        });
         message += `\n💰 *Subtotal:* PKR ${subtotal.toLocaleString()}\n`;
         message += `🚚 *Delivery:* PKR 249\n`;
-        message += `💵 *TOTAL:* PKR ${(subtotal + 249).toLocaleString()}\n\n`;
+        message += `💵 *TOTAL:* PKR ${(subtotal + 249).toLocaleString()}\n`;
         message += `⏰ *Time:* ${new Date().toLocaleString('en-PK')}`;
-        
-        window.open(`https://wa.me/+923437403940?text=${encodeURIComponent(message)}`, '_blank');
+
+        const whatsappNumber = '9234567890'; // CHANGE THIS TO YOUR NUMBER
+        window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
         
         // Success feedback
-        const submitBtn = document.querySelector('.submit-btn');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '✅ Order Sent Successfully!';
-        submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+        const btn = this.querySelector('.submit-order');
+        btn.innerHTML = '✅ Order Sent!';
+        btn.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
         
         setTimeout(() => {
-            submitBtn.innerHTML = originalText;
-            submitBtn.style.background = '#10b981';
+            localStorage.removeItem('currentOrder');
+            localStorage.removeItem('cart');
+            window.location.href = './cart.html';
         }, 2000);
     });
 
-    // Copy number
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('copy-number')) {
-            navigator.clipboard.writeText(e.target.dataset.original || e.target.textContent.trim())
-                .then(() => {
-                    const original = e.target.dataset.original;
-                    e.target.textContent = '✅ Copied!';
-                    setTimeout(() => {
-                        e.target.textContent = original;
-                    }, 2000);
-                });
-        }
-    });
-});
+    // Auto-focus name field
+    setTimeout(() => document.getElementById('customer-name').focus(), 500);
 </script>
 
+
 </body>
+
 </html>
