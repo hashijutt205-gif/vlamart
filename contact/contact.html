@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VLA Mart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../style/style.css">
+  <link rel="stylesheet" href="./contact.css">
+  <link rel="icon" href="../images/logo.jpg">
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header class="landing-navbar">
+    <div class="landing-logo" id="logo">
+      <i class="fas fa-bolt"></i> VLAMart
+    </div>
+
+    <!-- Desktop Links -->
+    <nav class="landing-links">
+      <a href="../index.html"><i class="fas fa-home-user"></i>Home</a>
+      <a href="../store/store.html"><i class="fas fa-shop"></i> Shop</a>
+      <a href="../cart/cart.html"><i class="fas fa-cart-shopping"></i>AddToCart</a>
+      <a href="../contact/contact.html"><i class="fas fa-phone"></i> Contact</a>
+      <!-- <a href="../forms/login.html" class="landing-auth-btn landing-login-btn"><i class="fas fa-right-to-bracket"></i>
+        Login</a>
+      <a href="../forms/signup.html" class="landing-auth-btn landing-signup-btn"><i class="fas fa-user-plus"></i> Sign
+        Up</a> -->
+    </nav>
+
+    <!-- Hamburger only for mobile -->
+    <div class="hamburger" id="hamburger">
+      <i class="fas fa-bars"></i>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <a href="../index.html"><i class="fas fa-home-user"></i>Home</a>
+    <a href="../store/store.html"><i class="fas fa-shop"></i> Shop</a>
+    <a href="../cart/cart.html"><i class="fas fa-cart-shopping"></i>AddToCart</a>
+    <a href="../contact/contact.html"><i class="fas fa-phone"></i> Contact</a>
+    <hr style="border-color: rgba(255,255,255,0.3);">
+   <!--  <a href="../forms/login.html" class="landing-auth-btn landing-login-btn"><i class="fas fa-right-to-bracket"></i>
+      Login</a>
+    <a href="../forms/signup.html" class="landing-auth-btn landing-signup-btn"><i class="fas fa-user-plus"></i> Sign
+      Up</a> -->
+  </div>
+  <!-- contact section -->
+  <!-- GLOBAL FLOATING THEME TOGGLE - Works on ANY page -->
+  <button class="global-theme-toggle" onclick="toggleGlobalTheme()" id="themeBtn">🌙</button>
+
+  <!-- Content flows perfectly after navbar -->
+  <div class="main-content">
+    <div class="container">
+      <div class="hero">
+        <h1>Contact Us</h1>
+        <p>Premium Bluetooth Speakers & Electronics. Reach out anytime!</p>
+      </div>
+
+      <div class="main-grid">
+        <div class="info-panel">
+          <div class="info-card">
+            <div class="info-row">
+              <div class="info-icon">📧</div>
+              <div class="info-content">
+                <h3>Email Support</h3>
+                <a href="mailto:support@ecomstore.pk">hashiahtisham143@gmail.com</a>
+              </div>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-row">
+              <div class="info-icon">📞</div>
+              <div class="info-content">
+                <h3>Phone Support</h3>
+                <a href="tel:+923001234567">+92 343 7403940</a>
+              </div>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-row">
+              <div class="info-icon">🕒</div>
+              <div class="info-content">
+                <h3>Business Hours</h3>
+                <p>Mon-Sat: 9AM-10PM </p>
+                <p>Sun : Off</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="form-panel">
+          <div class="form-field">
+            <input type="text" id="name" required>
+            <label for="name" placeholder="" required>Full Name</label>
+          </div>
+          <div class="form-field">
+            <input type="email" id="email" required>
+            <label for="email" placeholder="" required>Email Address</label>
+          </div>
+          <div class="form-field">
+            <input type="tel" id="phone">
+            <label for="phone" placeholder="" required>Phone (What's App)</label>
+          </div>
+          <div class="form-field">
+            <textarea id="message" required></textarea>
+            <label for="message" placeholder="" required>Your Message</label>
+          </div>
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+
+      <div class="footer">
+        <p>🛍️ VLA Mart Pakistan | Fast Delivery </p>
+      </div>
+    </div>
+    
+  </div>
+
+
+  <script src="../js-folder/script.js"></script>
+  <script src="./contact.js"></script>
+
+  <script>
+
+  </script>
+</body>
+
+</html>

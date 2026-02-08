@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <meta http-equiv="refresh" content="0; url=landing.html"> -->
+  <title>VLA Mart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./style/style.css">
+  <link rel="icon" href="./images/logo.jpg">
+  <style>
+    /* Floating theme button */
+    .dark-toggle {
+      position: fixed;
+      right: 25px;
+      bottom: 25px;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      border: 1px solid #ddd;
+      background: #ffffff;
+      /* WHITE in light mode */
+      color: #111;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 9999;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 15px 40px var(--shadow-blue);
+      transition: 0.3s ease;
+    }
+
+    /* Button becomes DARK in dark mode */
+    body.dark-mode .dark-toggle {
+      background: #0f172a;
+      color: #ffd166;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* DARK MODE */
+    body.dark-mode {
+      background: linear-gradient(180deg, #0b1220, #0f172a);
+      color: #e5e7eb;
+    }
+
+    /* Only page content becomes dark */
+    body.dark-mode .sale-card,
+    body.dark-mode .contact-box,
+    body.dark-mode .contact-form {
+      background: #1e293b;
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    body.dark-mode input,
+    body.dark-mode textarea {
+      background: #0f172a;
+      color: white;
+    }
+  </style>
+</head>
+
+<body class="index-body">
+
+  <!-- Navbar -->
+  <header class="landing-navbar">
+    <div class="landing-logo" id="logo">
+      <i class="fas fa-bolt"></i> VLAMart
+    </div>
+
+    <!-- Desktop Links -->
+    <nav class="landing-links">
+      <a href="index.html"><i class="fas fa-home-user"></i>Home</a>
+      <a href="../store/store.html"><i class="fas fa-shop"></i> Shop</a>
+      <a href="./cart/cart.html"><i class="fas fa-cart-shopping"></i>AddToCart</a>
+      <a href="../contact/contact.html"><i class="fas fa-phone"></i> Contact</a>
+      <!-- <a href="../forms/login.html" class="landing-auth-btn landing-login-btn"><i class="fas fa-right-to-bracket"></i>
+        Login</a>
+      <a href="../forms/signup.html" class="landing-auth-btn landing-signup-btn"><i class="fas fa-user-plus"></i> Sign
+        Up</a> -->
+    </nav>
+
+    <!-- Hamburger only for mobile -->
+    <div class="hamburger" id="hamburger">
+      <i class="fas fa-bars"></i>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <a href="index.html"><i class="fas fa-home-user"></i>Home</a>
+    <a href="../store/store.html"><i class="fas fa-shop"></i> Shop</a>
+    <a href="./cart/cart.html"><i class="fas fa-cart-shopping"></i>AddToCart</a>
+    <a href="../contact/contact.html"><i class="fas fa-phone"></i> Contact</a>
+    <hr style="border-color: rgba(255,255,255,0.3);">
+    <!-- <a href="../forms/login.html" class="landing-auth-btn landing-login-btn"><i class="fas fa-right-to-bracket"></i>
+      Login</a>
+    <a href="../forms/signup.html" class="landing-auth-btn landing-signup-btn"><i class="fas fa-user-plus"></i> Sign
+      Up</a> -->
+  </div>
+<!-- Cart message container -->
+<div id="cart-message" style="display:none; position: fixed; top: 60px; left: 50%; transform: translateX(-50%);
+    background: #4ade80; color: #fff; padding: 12px 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    z-index: 1000; font-weight: bold;">
+    Item added to cart!
+</div>
+
+
+  <section class="sale-section">
+    <h2 class="sale-title">🔥 Items on Sale</h2>
+
+    <div class="sale-grid">
+      <!-- item 1 -->
+      <div class="sale-card" data-id="item1" data-name="Samosa Maker" data-price="449"
+        data-image="../images/item1.jpeg">
+        <span class="sale-badge">-75%</span>
+        <img src="../images/item1.jpeg" class="product-image"
+          data-images="../images/item1.jpeg, ../images/ref/item1.1.jpeg, ../images/ref/item1.2.jpeg">
+        <div class="sale-content">
+          <h3 class="item-name">Samosa Maker</h3>
+          <p class="sale-desc">2 in 1 Dumpling maker by high Quality Materials</p>
+          <div class="sale-price">
+            <span class="new-price item-price">PKR 449</span>
+            <span class="old-price">PKR 1,599</span>
+          </div>
+          <div class="sale-buttons">
+            <button class="sale-btn">Add to Cart</button>
+            <button class="buy-now-btn">Buy Now</button>
+          </div>
+        </div>
+      </div>
+      <!-- item 1 refrence images -->
+      <!-- Image Preview Modal -->
+      <div id="imageModal">
+        <span id="closeModal">&times;</span>
+
+        <img id="modalImage">
+
+        <div id="thumbs"></div>
+      </div>
+
+
+      <!-- item 2 -->
+
+      <div class="sale-card" data-id="item2" data-name="Samosa Maker (Pack of 2)" data-price="879"
+        data-image="../images/item2.jpeg">
+        <span class="sale-badge">-75%</span>
+        <img src="../images/item2.jpeg" class="product-image"
+          data-images="../images/item2.jpeg, ../images/ref/item2.1.jpeg, ../images/ref/item2.2.jpeg">
+        <div class="sale-content">
+          <h3 class="item-name">Samosa Maker (Pack of 2)</h3>
+          <p class="sale-desc">2 in 1 Dumpling maker by high Quality Materials</p>
+          <div class="sale-price">
+            <span class="new-price item-price">PKR 879</span>
+            <span class="old-price">PKR 2,099</span>
+          </div>
+          <div class="sale-buttons">
+            <button class="sale-btn">Add to Cart</button>
+            <button class="buy-now-btn">Buy Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- item 3 -->
+
+      <div class="sale-card" data-id="item3" data-name="Under-Arm Sweat Pads" data-price="399"
+        data-image="../images/item3.jpeg">
+        <span class="sale-badge">-60%</span>
+        <img src="../images/item3.jpeg" class="product-image" data-images="../images/item3.jpeg">
+        <div class="sale-content">
+          <h3 class="item-name">Under-Arm Sweat Pads</h3>
+          <p class="sale-desc">Disposible sweat pads(Pack of 10)</p>
+          <div class="sale-price">
+            <span class="new-price item-price">PKR 399</span>
+            <span class="old-price">PKR 999</span>
+          </div>
+          <div class="sale-buttons">
+            <button class="sale-btn">Add to Cart</button>
+            <button class="buy-now-btn">Buy Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- item 4 -->
+
+      <div class="sale-card" data-id="item4" data-name="Electric Lighter" data-price="499"
+        data-image="../images/item4.jpeg">
+        <span class="sale-badge">-67%</span>
+        <img src="../images/item9.jpeg" class="product-image" data-images="../images/item9.jpeg">
+        <div class="sale-content">
+          <h3 class="item-name">Electric Lighter</h3>
+          <p class="sale-desc">Flexibal, No-Refill, No-Fuel and easy to use and charge with electricity</p>
+          <div class="sale-price">
+            <span class="new-price item-price">PKR 499</span>
+            <span class="old-price">PKR 1,599</span>
+          </div>
+          <div class="sale-buttons">
+            <button class="sale-btn">Add to Cart</button>
+            <button class="buy-now-btn">Buy Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- item 5 -->
+
+      <div class="sale-card" data-id="item5" data-name="Ear-Max Cleaner Kit (Pack of 6)" data-price="249"
+        data-image="../images/item5.jpeg">
+        <span class="sale-badge">-75%</span>
+        <img src="../images/item5.jpeg" class="product-image"
+          data-images="../images/item5.jpeg, ../images/ref/item5.1.jpeg, ../images/ref/item5.2.jpeg">
+        <div class="sale-content">
+          <h3 class="item-name">Ear-Max Cleaner Kit to 6</h3>
+          <p class="sale-desc">The Ultra thin buckle flip design is light-weight and easy to handle </p>
+          <div class="sale-price">
+            <span class="new-price item-price">PKR 249</span>
+            <span class="old-price">PKR 999</span>
+          </div>
+          <div class="sale-buttons">
+            <button class="sale-btn">Add to Cart</button>
+            <button class="buy-now-btn">Buy Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- item 6 -->
+
+      <div class="sale-card" data-id="item6" data-name="Microfiber Duster Cleaner(110 inch tall)" data-price="749"
+        data-image="../images/item6.jpeg">
+        <span class="sale-badge">-68%</span>
+        <img src="../images/item6.jpeg" class="product-image"
+          data-images="../images/item6.jpeg, ../images/ref/item6.1.jpeg, ../images/ref/item6.2.jpeg">
+        <div class="sale-content">
+          <h3 class="item-name">Microfiber Duster Cleaner(110 inch tall)</h3>
+          <p class="sale-desc">Wash-Able and ReUsable, easy to store and hang, Stainless steel and extension</p>
+          <div class="sale-price">
+            <span class="new-price item-price">PKR 749</span>
+            <span class="old-price">PKR 2,199</span>
+          </div>
+          <div class="sale-buttons">
+            <button class="sale-btn">Add to Cart</button>
+            <button class="buy-now-btn">Buy Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- item 7 -->
+
+      <div class="sale-card" data-id="item7" data-name="Silicone Bath Belt" data-price="299"
+        data-image="../images/item7.jpeg">
+        <span class="sale-badge">-70%</span>
+        <img src="../images/item7.jpeg" class="product-image"
+          data-images="../images/item7.jpeg, ../images/ref/item7.1.jpeg, ../images/ref/item7.2.jpeg, ../images/ref/item7.3.jpeg,  ../images/ref/item7.4.jpeg">
+        <div class="sale-content">
+          <h3 class="item-name">Silicone Bath Belt</h3>
+          <p class="sale-desc">Errgonomic Two handle Design with high Flexibility</p>
+          <div class="sale-price">
+            <span class="new-price item-price">PKR 299</span>
+            <span class="old-price">PKR 999</span>
+          </div>
+          <div class="sale-buttons">
+            <button class="sale-btn">Add to Cart</button>
+            <button class="buy-now-btn">Buy Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- item 8 -->
+
+      <div class="sale-card" data-id="item8" data-name="Microfiber Washable Tissues(Pack of 20)" data-price="899"
+        data-image="../images/item8.jpeg">
+
+        <span class="sale-badge">-70%</span>
+        <img src="../images/item8.jpeg" class="product-image"
+          data-images="../images/item8.jpeg, ../images/ref/item8.1.png, ../images/ref/item8.2.png, ../images/ref/item8.3.png">
+        <div class="sale-content">
+          <h3 class="item-name">Microfiber Washable Tissues(Pack of 20)</h3>
+          <p class="sale-desc">ExtractAble cloth, no fear of oil-cleaning(<b>size:7.9inch</b>)</p>
+          <div class="sale-price">
+            <span class="new-price item-price">PKR 899</span>
+            <span class="old-price">PKR 2,599</span>
+          </div>
+          <div class="sale-buttons">
+            <button class="sale-btn">Add to Cart</button>
+            <button class="buy-now-btn">Buy Now</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    </div>
+    <!-- show more btn -->
+    <div class="center-anywhere">
+      <a href="./store/store.html">
+        <button class="universal-btn" id="showMoreBtn">Show More</button>
+      </a>
+    </div>
+    <!-- dark/white theme -->
+    <button id="darkToggle" class="dark-toggle">
+      <i class="fas fa-moon"></i>
+    </button>
+
+  </section>
+
+
+
+  <!-- reference images -->
+  <div id="imageModal" class="image-modal">
+    <span class="close-modal">&times;</span>
+
+    <img id="mainPreview">
+
+    <div class="preview-thumbs" id="previewThumbs"></div>
+  </div>
+
+
+
+  <script src="./js-folder/script.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      const btn = document.getElementById("darkToggle");
+
+      // Load saved theme
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+      }
+
+      btn.addEventListener("click", function () {
+
+        document.body.classList.toggle("dark-mode");
+
+        if (document.body.classList.contains("dark-mode")) {
+          localStorage.setItem("theme", "dark");
+        } else {
+          localStorage.setItem("theme", "light");
+        }
+
+      });
+
+    });
+    // Only redirect if we haven't redirected in this session yet
+    if (!sessionStorage.getItem('redirectedToLanding')) {
+      sessionStorage.setItem('redirectedToLanding', 'true'); // mark that we redirected
+      window.location.href = "landing/landing.html";
+    }
+    /* reference images */
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+      const modal = document.getElementById("imageModal");
+      const modalImage = document.getElementById("modalImage");
+      const thumbs = document.getElementById("thumbs");
+      const closeModal = document.getElementById("closeModal");
+
+      // when product image clicked
+      document.querySelectorAll(".product-image").forEach(function (img) {
+
+        img.addEventListener("click", function () {
+
+          modal.style.display = "flex";
+
+          const images = this.dataset.images.split(",");
+
+          modalImage.src = images[0].trim();
+          thumbs.innerHTML = "";
+
+          images.forEach(function (src) {
+
+            let thumb = document.createElement("img");
+            thumb.src = src.trim();
+
+            thumb.onclick = function () {
+              modalImage.src = this.src;
+            };
+
+            thumbs.appendChild(thumb);
+          });
+
+        });
+
+      });
+
+      // close button
+      closeModal.onclick = function () {
+        modal.style.display = "none";
+      };
+
+      // click outside closes modal
+      modal.onclick = function (e) {
+        if (e.target === modal) {
+          modal.style.display = "none";
+        }
+      };
+
+    });
+
+    /* 
+      document.querySelectorAll(".sale-btn").forEach(button => {
+      button.addEventListener("click", function () {
+        const card = this.closest(".sale-card");
+    
+        const item = {
+          id: card.getAttribute("data-id"),  // Make sure each card has a unique data-id
+          name: card.querySelector(".item-name").innerText.trim(),
+          price: parseFloat(card.querySelector(".item-price").innerText.replace('$','')),
+          image: card.querySelector(".product-image").src,
+          quantity: 1
+        };
+    
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+        // Check for duplicates using unique ID
+        const exists = cart.some(cartItem => cartItem.id === item.id);
+    
+        if (exists) {
+          alert("Item is already in the cart ⚠️");
+          return;
+        }
+    
+        cart.push(item);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        alert("Item added to cart ✅");
+      });
+    }); */
+
+
+    /* buy function */
+    // 🔥 UNIVERSAL - Works with ALL Buy Now buttons & products
+    document.addEventListener('DOMContentLoaded', function () {
+      // Works with ANY .buy-now-btn regardless of product
+      document.querySelectorAll('.buy-now-btn').forEach((btn, index) => {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+
+          // Find closest product card (works with your sale-card structure)
+          const productCard = this.closest('.sale-card') ||
+            this.closest('[data-id]') ||
+            this.parentElement.parentElement;
+
+          // Universal product data extraction
+          const productData = {
+            id: productCard.dataset.id || `product-${index}`,
+            name: productCard.querySelector('.item-name, h3, h2, .product-title')?.textContent?.trim() || 'Product',
+            image: productCard.querySelector('img')?.src || productCard.querySelector('.product-image')?.dataset.images?.split(',')[0] || '../images/default.jpg',
+            price: productCard.querySelector('.item-price, .new-price, .price')?.textContent?.trim() || 'PKR 0',
+            originalPrice: productCard.querySelector('.old-price')?.textContent?.trim() || ''
+          };
+
+          // Navigate to delivery page
+          const url = `delivery.html?product=${encodeURIComponent(JSON.stringify(productData))}`;
+          window.location.href = url;
+        });
+      });
+    });
+    /* document.querySelectorAll(".sale-btn").forEach(button => {
+      button.addEventListener("click", function() {
+        const card = this.closest(".sale-card");
+    
+        const item = {
+          id: card.dataset.id,
+          name: card.querySelector(".item-name").innerText.trim(),
+          price: parseInt(card.querySelector(".item-price").innerText.replace(/[^\d]/g,'')), // numeric price
+          image: card.querySelector(".product-image").src,
+          quantity: 1
+        };
+    
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+        const exists = cart.find(cartItem => cartItem.id === item.id);
+        if(exists){
+          exists.quantity += 1; // if already in cart, just increase quantity
+        } else {
+          cart.push(item);
+        }
+    
+        localStorage.setItem("cart", JSON.stringify(cart));
+        alert("Item added to cart ✅");
+      });
+    }); */
+// Only run on index.html
+if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' ) {
+
+    // Function to show cart message
+    function showCartMessage() {
+        const msg = document.getElementById('cart-message');
+        if(!msg) return;
+        msg.style.display = 'block';
+
+        setTimeout(() => {
+            msg.style.display = 'none';
+        }, 2000);
+    }
+
+    // Select ALL "Add to Cart" buttons (your HTML uses .sale-btn)
+    const addToCartButtons = document.querySelectorAll('.sale-btn');
+
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const card = this.closest('.sale-card');
+
+            const product = {
+                id: card.dataset.id,
+                name: card.dataset.name,
+                price: parseInt(card.dataset.price),
+                image: card.dataset.image,
+                quantity: 1
+            };
+
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            const existing = cart.find(item => item.id === product.id);
+
+            if (existing) {
+                existing.quantity += 1; // increase quantity but price stays same
+            } else {
+                cart.push(product);
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            // Show the message
+            showCartMessage();
+        });
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    function showCartMessage(text) {
+        let msg = document.getElementById('cart-message');
+        if (!msg) {
+            msg = document.createElement('div');
+            msg.id = 'cart-message';
+            msg.style.cssText = `
+                display:none;
+                position: fixed;
+                top: 60px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #4ade80;
+                color: #fff;
+                padding: 12px 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+                z-index: 1000;
+                font-weight: bold;
+            `;
+            document.body.appendChild(msg);
+        }
+        msg.textContent = text;
+        msg.style.display = 'block';
+        setTimeout(() => { msg.style.display = 'none'; }, 2000);
+    }
+
+    const addToCartButtons = document.querySelectorAll('.sale-btn');
+
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const card = this.closest('.sale-card');
+            if (!card) return;
+
+            const priceRaw = card.dataset.price || "0";
+            const price = parseFloat(priceRaw.replace(/[^\d]/g,'')); // remove any non-digit chars
+
+            const product = {
+                id: card.dataset.id.trim(),
+                name: card.dataset.name.trim(),
+                price: price,
+                image: card.dataset.image,
+                quantity: 1
+            };
+
+            // Get cart
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            // Find item by exact id
+            const existingIndex = cart.findIndex(item => item.id === product.id);
+
+            if (existingIndex > -1) {
+                // Increase quantity
+                cart[existingIndex].quantity += 1;
+                localStorage.setItem("cart", JSON.stringify(cart));
+                showCartMessage(`${cart[existingIndex].name} quantity updated: x${cart[existingIndex].quantity}`);
+            } else {
+                // Add new
+                cart.push(product);
+                localStorage.setItem("cart", JSON.stringify(cart));
+                showCartMessage(`${product.name} added to cart!`);
+            }
+        });
+    });
+
+});
+
+  </script>
+
+
+
+
+
+</body>
+
+</html>

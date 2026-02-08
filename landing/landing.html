@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>VLA Mart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../style/style.css">
+  <link rel="stylesheet" href="../landing.css">
+  <link rel="icon" href="../images/logo.jpg">
+  <style>
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header class="landing-navbar">
+    <div class="landing-logo" id="logo">
+      <i class="fas fa-bolt"></i> VLAMart
+    </div>
+
+    <!-- Desktop Links -->
+    <nav class="landing-links">
+      <a href="../index.html"><i class="fas fa-home-user"></i>Home</a>
+      <a href="../store/store.html"><i class="fas fa-shop"></i> Shop</a>
+      <a href="../cart/cart.html"><i class="fas fa-cart-shopping"></i>AddToCart</a>
+      <a href="../contact/contact.html"><i class="fas fa-phone"></i> Contact</a>
+      <!-- <a href="../forms/login.html" class="landing-auth-btn landing-login-btn"><i class="fas fa-right-to-bracket"></i> Login</a>
+      <a href="../forms/signup.html" class="landing-auth-btn landing-signup-btn"><i class="fas fa-user-plus"></i> Sign Up</a> -->
+    </nav>
+
+    <!-- Hamburger only for mobile -->
+    <div class="hamburger" id="hamburger">
+      <i class="fas fa-bars"></i>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <a href="../index.html"><i class="fas fa-home-user"></i>Home</a>
+    <a href="../store/store.html"><i class="fas fa-shop"></i> Shop</a>
+    <a href="../cart/cart.html"><i class="fas fa-cart-shopping"></i>AddToCart</a>
+    <a href="../contact/contact.html"><i class="fas fa-phone"></i> Contact</a>
+    <hr style="border-color: rgba(255,255,255,0.3);">
+   <!--  <a href="../forms/login.html" class="landing-auth-btn landing-login-btn"><i class="fas fa-right-to-bracket"></i> Login</a>
+    <a href="../forms/signup.html" class="landing-auth-btn landing-signup-btn"><i class="fas fa-user-plus"></i> Sign Up</a> -->
+  </div>
+
+  <!-- Hero Section -->
+  <section class="landing-hero">
+    <div class="landing-hero-content">
+      <h1 class="landing-hero-title">VLAMart Revolution</h1>
+      <p class="landing-hero-desc">Pakistan's premier destination for cutting-edge Modern tools.<br/> 5000+ Happy Customer</p>
+
+      <a href="../index.html" class="landing-shop-btn" id="vlamart-link">
+        <i class="fas fa-shopping-cart"></i> Enter VLAMart Store
+      </a>
+
+
+
+    </div>
+  </section>
+
+  <!-- Social Section -->
+  <section class="landing-social">
+    <h2 class="landing-social-title">Stay Connected</h2>
+    <div class="landing-social-grid">
+      <a href="https://www.tiktok.com/@muhammadahtisham3711" class="landing-social-link" target="_blank">
+        <div class="landing-social-icon"><i class="fab fa-tiktok"></i></div>TikTok
+      </a>
+      <a href="https://www.instagram.com/hashiahtisham143" target="_blank" class="landing-social-link">
+        <div class="landing-social-icon"><i class="fab fa-instagram"></i></div>Instagram
+      </a>
+      <a href="https://www.facebook.com/Muhammad Ahtisham" target="_blank" class="landing-social-link">
+        <div class="landing-social-icon"><i class="fab fa-facebook-f"></i></div>Facebook
+      </a>
+      <a href="https://wa.me/+923437403940" target="_blank" class="landing-social-link">
+        <div class="landing-social-icon"><i class="fab fa-whatsapp"></i></div>What's App
+      </a>
+      <a href="mailto:hashijutt205@gmail.com" target="_blank" class="landing-social-link">
+        <div class="landing-social-icon"><i class="fas fa-envelope"></i></div>Email
+      </a>
+    </div>
+   
+   
+  </section>
+
+  <footer class="landing-footer">
+    <p>© 2026 VLAMart</p>
+  </footer>
+  <script src="../js-folder/script.js"></script>
+ 
+  <script>
+    document.getElementById("vlamart-link").addEventListener("click", () => {
+      sessionStorage.setItem("fromLanding", "true");
+    });
+
+/* for dark theme  */
+
+
+  </script>
+
+</body>
+
+</html>

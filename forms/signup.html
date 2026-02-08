@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VLA Mart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../style/style.css">
+  <link rel="icon" href="../images/logo.jpg">
+  <style>
+    /* COMPLETE DARK THEME SYSTEM - LIKE LOGIN PAGE */
+    :root {
+      /* Light Theme (White) */
+      --bg-primary: linear-gradient(135deg, #f0f2ff 0%, #e0e7ff 50%, #c7d2fe 100%);
+      --bg-card: rgba(255, 255, 255, 0.95);
+      --bg-card-dark: rgba(255, 255, 255, 0.85);
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --input-bg: rgba(255, 255, 255, 0.9);
+      --input-border: rgba(148, 163, 184, 0.5);
+      --accent: #3b82f6;
+      --accent-google: #4285f4;
+      --shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+      --glow: 0 0 30px rgba(59, 130, 246, 0.3);
+      --success: #10b981;
+      --error: #ef4444;
+      --btn-bg: rgba(255, 255, 255, 0.95);
+      --btn-color: #1e293b;
+    }
+
+    [data-theme="dark"] {
+      /* Dark Theme (Black) - PERFECT MATCH */
+      --bg-primary: linear-gradient(135deg, #0c0c1a 0%, #1a1a2e 50%, #16213e 100%);
+      --bg-card: rgba(26, 32, 44, 0.95);
+      --bg-card-dark: rgba(15, 23, 42, 0.9);
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --input-bg: rgba(30, 41, 59, 0.8);
+      --input-border: rgba(71, 85, 105, 0.5);
+      --accent: #60a5fa;
+      --accent-google: #4285f4;
+      --shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      --glow: 0 0 30px rgba(96, 165, 250, 0.4);
+      --success: #34d399;
+      --error: #f87171;
+      --btn-bg: rgba(15, 23, 42, 0.95);
+      --btn-color: #f8fafc;
+    }
+
+    /* BASE STYLES */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      padding-top: 80px;
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      line-height: 1.6;
+    }
+
+    /* PERFECT RESPONSIVE LAYOUT */
+    .vla-login-page {
+      min-height: calc(100vh - 80px);
+      background: var(--bg-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Floating Particles */
+    .vla-login-page::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.4), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.3), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.5), transparent);
+      background-repeat: repeat;
+      background-size: 200px 100px;
+      animation: float 20s linear infinite;
+      pointer-events: none;
+      opacity: 0.6;
+      z-index: 1;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px) rotate(0deg);
+      }
+
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+      }
+    }
+
+    /* PERFECT LOGIN CARD */
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      min-width: 320px;
+      background: var(--bg-card);
+      backdrop-filter: blur(25px);
+      border: 1px solid var(--input-border);
+      border-radius: 28px;
+      padding: clamp(2rem, 5vw, 3rem);
+      box-shadow: var(--shadow);
+      position: relative;
+      animation: cardSlide 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      overflow: hidden;
+      z-index: 10;
+      margin: 1rem;
+    }
+
+    .login-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.6s;
+    }
+
+    .login-card:hover::before {
+      left: 100%;
+    }
+
+    @keyframes cardSlide {
+      from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* PERFECT RESPONSIVE TYPOGRAPHY */
+    .logo {
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+
+    .logo i {
+      font-size: clamp(2.5rem, 8vw, 3.5rem);
+      background: linear-gradient(135deg, var(--accent), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 10px 20px var(--glow));
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+        transform: translateY(0);
+      }
+
+      40% {
+        transform: translateY(-10px);
+      }
+
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+
+    .title {
+      color: var(--text-primary);
+      font-size: clamp(1.5rem, 4vw, 1.875rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.025em;
+    }
+
+    .subtitle {
+      color: var(--text-secondary);
+      text-align: center;
+      font-size: clamp(0.875rem, 2.5vw, 1rem);
+      margin-bottom: 2rem;
+    }
+
+    /* FIXED INPUTS */
+    .input-group {
+      position: relative;
+      margin-bottom: 1.25rem;
+    }
+
+    .input-field {
+      width: 100%;
+      height: 56px;
+      padding: 0 1rem 0 3.5rem;
+      background: var(--input-bg);
+      backdrop-filter: blur(15px);
+      border: 2px solid var(--input-border);
+      border-radius: 16px;
+      color: var(--text-primary);
+      font-size: 1rem;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      outline: none;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .input-field:focus {
+      border-color: var(--accent);
+      box-shadow: var(--glow);
+      transform: translateY(-2px);
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+
+    .input-field:focus~.input-icon {
+      color: var(--accent);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    /* PASSWORD STATUS - PERFECT */
+    .password-status {
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      padding: 0.375rem 0.75rem;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      min-height: 24px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .status-empty {
+      opacity: 0;
+      height: 0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .status-match {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--success);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      opacity: 1;
+      height: 24px;
+    }
+
+    .status-mismatch {
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--error);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      opacity: 1;
+      height: 24px;
+    }
+
+    /* STRENGTH BAR */
+    .password-strength {
+      height: 4px;
+      border-radius: 2px;
+      background: var(--input-border);
+      transition: all 0.3s ease;
+      margin-top: 0.5rem;
+      overflow: hidden;
+    }
+
+    .strength-weak {
+      background: var(--error);
+      width: 30%;
+    }
+
+    .strength-fair {
+      background: #f59e0b;
+      width: 60%;
+    }
+
+    .strength-strong {
+      background: var(--success);
+      width: 100%;
+    }
+
+    /* BUTTONS */
+    .signin-btn,
+    .google-btn {
+      height: 56px;
+      width: 100%;
+      border: none;
+      border-radius: 16px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 1rem;
+    }
+
+    .signin-btn {
+      background: linear-gradient(135deg, var(--accent), #2563eb);
+      color: white;
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+    }
+
+    .signin-btn:hover:not(:disabled) {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.4);
+    }
+
+    .google-btn {
+      background: var(--btn-bg);
+      color: var(--text-primary);
+      border: 2px solid var(--input-border);
+      text-decoration: none;
+      box-shadow: var(--shadow);
+    }
+
+    .google-btn:hover {
+      background: var(--accent-google);
+      color: white;
+      border-color: var(--accent-google);
+      transform: translateY(-2px);
+    }
+
+    /* Divider & Links */
+    .divider {
+      position: relative;
+      text-align: center;
+      margin: 2rem 0;
+      color: var(--text-secondary);
+    }
+
+    .divider::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--input-border), transparent);
+    }
+
+    .divider span {
+      background: var(--bg-card);
+      padding: 0 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .signup-link {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .signup-text {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .login-btn {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .login-btn:hover {
+      text-shadow: var(--glow);
+    }
+
+    /* PERFECT THEME TOGGLE - BOTTOM RIGHT */
+    .theme-toggle {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 3.5rem;
+      height: 3.5rem;
+      border: 2px solid var(--input-border);
+      border-radius: 50%;
+      background: var(--btn-bg);
+      backdrop-filter: blur(20px);
+      color: var(--btn-color);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: var(--shadow);
+      z-index: 1000;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 var(--glow);
+      }
+
+      70% {
+        box-shadow: 0 0 0 12px transparent;
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 transparent;
+      }
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.15) rotate(180deg);
+      box-shadow: var(--glow), var(--shadow);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 480px) {
+      body {
+        padding-top: 70px;
+      }
+
+      .vla-login-page {
+        padding: 1rem;
+        min-height: calc(100vh - 70px);
+        align-items: flex-start;
+        padding-top: 2rem;
+      }
+
+      .login-card {
+        max-width: none;
+        min-width: 280px;
+        padding: 1.75rem;
+        margin: 0;
+      }
+
+      .theme-toggle {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.1rem;
+      }
+    }
+
+    /* Shake Animation */
+    @keyframes shake {
+
+      10%,
+      90% {
+        transform: translateX(-2px);
+      }
+
+      20%,
+      80% {
+        transform: translateX(4px);
+      }
+
+      30%,
+      50%,
+      70% {
+        transform: translateX(-8px);
+      }
+    }
+
+    .error-shake {
+      animation: shake 0.5s cubic-bezier(.36, .07, .19, .97);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header class="landing-navbar">
+    <div class="landing-logo" id="logo">
+      <i class="fas fa-bolt"></i> VLAMart
+    </div>
+
+    <!-- Desktop Links -->
+    <nav class="landing-links">
+      <a href="../index.html"><i class="fas fa-home-user"></i>Home</a>
+      <a href="../store/store.html"><i class="fas fa-shop"></i> Shop</a>
+      <a href="../cart/cart.html"><i class="fas fa-cart-shopping"></i>AddToCart</a>
+      <a href="../contact/contact.html"><i class="fas fa-phone"></i> Contact</a>
+      <!-- <a href="./login.html" class="landing-auth-btn landing-login-btn"><i class="fas fa-right-to-bracket"></i>
+        Login</a>
+      <a href="./signup.html" class="landing-auth-btn landing-signup-btn"><i class="fas fa-user-plus"></i> Sign Up</a>
+    </nav> -->
+
+    <!-- Hamburger only for mobile -->
+    <div class="hamburger" id="hamburger">
+      <i class="fas fa-bars"></i>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <a href="../index.html"><i class="fas fa-home-user"></i>Home</a>
+    <a href="../store/store.html"><i class="fas fa-shop"></i> Shop</a>
+    <a href="../cart/cart.html"><i class="fas fa-cart-shopping"></i>AddToCart</a>
+    <a href="../contact/contact.html"><i class="fas fa-phone"></i> Contact</a>
+    <hr style="border-color: rgba(255,255,255,0.3);">
+   <!--  <a href="./login.html" class="landing-auth-btn landing-login-btn"><i class="fas fa-right-to-bracket"></i> Login</a>
+    <a href="./signup.html" class="landing-auth-btn landing-signup-btn"><i class="fas fa-user-plus"></i> Sign Up</a> -->
+  </div>
+
+
+  <!-- VLA Mart Sign Up -->
+  <main class="vla-login-page">
+    <!-- PERFECT THEME TOGGLE -->
+    <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+      <i class="fas fa-sun"></i>
+    </button>
+
+    <div class="login-card">
+      <div class="logo">
+        <i class="fas fa-user-plus"></i>
+      </div>
+      <h1 class="title">Create Account</h1>
+      <p class="subtitle">Join VLA Mart today</p>
+
+      <!-- Google Sign Up -->
+      <a href="#" class="google-btn" id="googleSignUp">
+        <i class="fab fa-google"></i>
+        Continue with Google
+      </a>
+
+      <div class="divider">
+        <span>or</span>
+      </div>
+
+      <form id="signupForm">
+        <div class="input-group">
+          <input type="text" class="input-field" id="fullName" placeholder="Full Name" required>
+          <i class="fas fa-user input-icon"></i>
+        </div>
+
+        <div class="input-group">
+          <input type="email" class="input-field" id="email" placeholder="Email Address" required autocomplete="email">
+          <i class="fas fa-envelope input-icon"></i>
+        </div>
+
+        <div class="input-group">
+          <input type="password" class="input-field" id="password" placeholder="Password (8+ chars)" required
+            minlength="8">
+          <i class="fas fa-lock input-icon"></i>
+          <div class="password-strength" id="passwordStrength"></div>
+        </div>
+
+        <div class="input-group">
+          <input type="password" class="input-field" id="confirmPassword" placeholder="Confirm Password" required>
+          <i class="fas fa-lock input-icon"></i>
+          <div class="password-status status-empty" id="passwordStatus">
+            <i class="fas fa-circle-notch fa-spin"></i> Type to check
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label class="checkbox-group">
+            <input type="checkbox" id="terms" required>
+            <span>I agree to Terms & Conditions</span>
+          </label>
+        </div>
+
+        <button type="submit" class="signin-btn">
+          <i class="fas fa-user-plus"></i>
+          Create Account
+        </button>
+      </form>
+
+      <div class="signup-link">
+        <span class="signup-text">Already have an account?</span>
+        <a href="./login.html" class="login-btn">
+          <i class="fas fa-sign-in-alt"></i> Sign in
+        </a>
+      </div>
+    </div>
+  </main>
+
+
+
+
+  <script src="../js-folder/script.js"></script>
+  <script>
+    // VLA Mart PERFECT Dark Theme Toggle (SAME AS LOGIN)
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('vlaTheme') || 'light';
+    body.setAttribute('data-theme', savedTheme);
+
+    function updateThemeIcon() {
+      const isDark = body.getAttribute('data-theme') === 'dark';
+      themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+      themeToggle.title = isDark ? 'Switch to Light (White)' : 'Switch to Dark (Black)';
+    }
+
+    updateThemeIcon();
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('vlaTheme', newTheme);
+      updateThemeIcon();
+    });
+
+    // PERFECT PASSWORD VALIDATION
+    const passwordField = document.getElementById('password');
+    const confirmPasswordField = document.getElementById('confirmPassword');
+    const passwordStatus = document.getElementById('passwordStatus');
+    const passwordStrength = document.getElementById('passwordStrength');
+
+    // Password Strength (shows ONLY when typing)
+    passwordField.addEventListener('input', function () {
+      const password = this.value;
+      passwordStrength.className = 'password-strength';
+
+      if (password.length === 0) {
+        passwordStrength.style.width = '0';
+        updatePasswordMatch();
+        return;
+      }
+
+      let strength = 0;
+      if (password.length >= 8) strength++;
+      if (/[A-Z]/.test(password)) strength++;
+      if (/[0-9]/.test(password)) strength++;
+      if (/[^A-Za-z0-9]/.test(password)) strength++;
+
+      if (strength <= 1) {
+        passwordStrength.classList.add('strength-weak');
+      } else if (strength <= 3) {
+        passwordStrength.classList.add('strength-fair');
+      } else {
+        passwordStrength.classList.add('strength-strong');
+      }
+
+      updatePasswordMatch();
+    });
+
+    // PERFECT MATCH CHECKER
+    function updatePasswordMatch() {
+      const password = passwordField.value;
+      const confirmPassword = confirmPasswordField.value;
+
+      if (password.length === 0) {
+        passwordStatus.className = 'password-status status-empty';
+        return;
+      }
+
+      if (confirmPassword.length === 0) {
+        passwordStatus.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Confirm password';
+        passwordStatus.className = 'password-status status-match';
+        return;
+      }
+
+      if (password === confirmPassword) {
+        passwordStatus.innerHTML = '<i class="fas fa-check-circle"></i> Passwords match!';
+        passwordStatus.className = 'password-status status-match';
+      } else {
+        passwordStatus.innerHTML = '<i class="fas fa-times-circle"></i> Passwords don\'t match';
+        passwordStatus.className = 'password-status status-mismatch';
+      }
+    }
+
+    confirmPasswordField.addEventListener('input', updatePasswordMatch);
+
+    // Google Button
+    document.getElementById('googleSignUp').addEventListener('click', (e) => {
+      e.preventDefault();
+      const btn = e.currentTarget;
+      const original = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing up with Google...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.innerHTML = original;
+        btn.disabled = false;
+        alert('🎉 Google Sign Up Coming Soon!\n\nUse email signup below.');
+      }, 2000);
+    });
+
+    // Form Submission
+    document.getElementById('signupForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const terms = document.getElementById('terms').checked;
+      if (!terms) {
+        alert('Please accept Terms & Conditions');
+        return;
+      }
+
+      if (passwordField.value !== confirmPasswordField.value) {
+        document.getElementById('signupForm').classList.add('error-shake');
+        setTimeout(() => document.getElementById('signupForm').classList.remove('error-shake'), 500);
+        return;
+      }
+
+      const btn = e.target.querySelector('.signin-btn');
+      const original = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        const name = document.getElementById('fullName').value;
+        localStorage.setItem('user', JSON.stringify({
+          name,
+          email: document.getElementById('email').value
+        }));
+        btn.innerHTML = original;
+        btn.disabled = false;
+        alert('🎉 Account created successfully!\nWelcome to VLA Mart, ' + name + '!');
+        window.location.href = '../store/store.html';
+      }, 2000);
+    });
+  </script>
+</body>
+
+</html>

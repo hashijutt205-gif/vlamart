@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout - VLA Mart</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f4f6;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.product-box {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.product-box img {
+    width: 120px;
+    border-radius: 8px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+.price-summary {
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0;
+}
+
+.total-row {
+    font-weight: bold;
+    font-size: 18px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Checkout</h2>
+
+<div class="product-box">
+    <img id="productImg">
+    <div>
+        <h3 id="productName"></h3>
+        <p id="productPrice"></p>
+    </div>
+</div>
+
+<form id="orderForm">
+
+<label>Quantity</label>
+<input type="number" id="quantity" value="1" min="1">
+
+<div class="price-summary">
+    <div class="price-row">
+        <span>Subtotal</span>
+        <span id="subtotalPrice">PKR 0</span>
+    </div>
+
+    <div class="price-row">
+        <span>Delivery Charges</span>
+        <span>PKR 249</span>
+    </div>
+
+    <div class="price-row total-row">
+        <span>Total</span>
+        <span id="totalPrice">PKR 0</span>
+    </div>
+</div>
+
+<h3>Customer Details</h3>
+<input type="text" id="customerName" placeholder="Full Name" required>
+<input type="tel" id="customerPhone" placeholder="Phone Number" required>
+<textarea id="customerAddress" placeholder="Address" required></textarea>
+
+<h3>Payment Method</h3>
+<label><input type="radio" name="payment" value="Cash on Delivery" required> Cash on Delivery</label><br>
+<label><input type="radio" name="payment" value="EasyPaisa"> EasyPaisa</label>
+
+<div id="paymentDetails" style="margin-top:10px; display:none;"></div>
+
+<button type="submit">Place Order</button>
+
+</form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const productData = JSON.parse(decodeURIComponent(urlParams.get('product') || '{}'));
+
+    document.getElementById('productImg').src = productData.image || '';
+    document.getElementById('productName').textContent = productData.name || 'Product';
+    document.getElementById('productPrice').textContent = productData.price || 'PKR 0';
+
+    const price = parseInt((productData.price || '0').replace(/[^\d]/g, ''));
+    const quantity = document.getElementById('quantity');
+    const subtotal = document.getElementById('subtotalPrice');
+    const total = document.getElementById('totalPrice');
+    const paymentDetails = document.getElementById('paymentDetails');
+
+    const deliveryCharge = 249;
+
+    function updateTotal() {
+        const qty = parseInt(quantity.value || 1);
+        const subtotalAmount = price * qty;
+        const grandTotal = subtotalAmount + deliveryCharge;
+
+        subtotal.textContent = `PKR ${subtotalAmount.toLocaleString()}`;
+        total.textContent = `PKR ${grandTotal.toLocaleString()}`;
+    }
+
+    quantity.addEventListener('input', updateTotal);
+    updateTotal();
+
+    const paymentInfo = {
+        "Cash on Delivery":
+            "<strong>Cash on Delivery</strong><br>Pay cash when your order arrives.",
+
+        "EasyPaisa":
+            "<strong>EasyPaisa</strong><br>Name: Muhammad Talha<br>Number: <span class='copy-number' style='cursor:pointer;color:#2563eb;font-weight:600;'>0343-7403940</span>"
+    };
+
+    document.querySelectorAll('input[name="payment"]').forEach(radio => {
+        radio.addEventListener('change', function () {
+            paymentDetails.style.display = 'block';
+            paymentDetails.innerHTML = paymentInfo[this.value];
+        });
+    });
+
+    document.getElementById('orderForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+
+        const message = `*New Order*\n\nName: ${customerName.value}\nPhone: ${customerPhone.value}\nAddress: ${customerAddress.value}\n\nProduct: ${productData.name}\nQty: ${quantity.value}\nTotal: ${total.textContent}\nPayment: ${paymentMethod}`;
+
+        window.open(`https://wa.me/+923437403940?text=${encodeURIComponent(message)}`, '_blank');
+    });
+
+    paymentDetails.addEventListener("click", function (e) {
+        if (e.target.classList.contains("copy-number")) {
+            const number = e.target.innerText.trim();
+            navigator.clipboard.writeText(number);
+            alert("Number copied: " + number);
+        }
+    });
+
+});
+</script>
+
+</body>
+</html>
