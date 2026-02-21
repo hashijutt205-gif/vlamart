@@ -99,32 +99,41 @@ document.querySelectorAll(".add-to-cart").forEach(button => {
 
 });
 // Show message only if we're on index.html
-if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' ) {
+if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
 
-    // Function to show cart message
-    function showCartMessage() {
-        const msg = document.getElementById('cart-message');
-        if(!msg) return; // safety check
-        msg.style.display = 'block';
+  // Function to show cart message
+  function showCartMessage() {
+    const msg = document.getElementById('cart-message');
+    if (!msg) return; // safety check
+    msg.style.display = 'block';
 
-        // Hide after 2 seconds
-        setTimeout(() => {
-            msg.style.display = 'none';
-        }, 2000);
-    }
+    // Hide after 2 seconds
+    setTimeout(() => {
+      msg.style.display = 'none';
+    }, 2000);
+  }
 
-    // Add event listeners to all Add to Cart buttons
-    const addToCartButtons = document.querySelectorAll('.add-to-cart');
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
+  // Add event listeners to all Add to Cart buttons
+  const addToCartButtons = document.querySelectorAll('.add-to-cart');
+  addToCartButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
 
-            // Show message
-            showCartMessage();
+      // Show message
+      showCartMessage();
 
-            // Optional: Add your cart logic here
-            // Example: addToCart(itemId);
-        });
+      // Optional: Add your cart logic here
+      // Example: addToCart(itemId);
     });
+  });
 }
+/* free delivery */
+const product = {
+  id: card.dataset.id,   // IMPORTANT
+  name: card.dataset.name,
+  price: card.dataset.price,
+  image: card.dataset.image
+};
 
+window.location.href = "delivery.html?product=" + 
+  encodeURIComponent(JSON.stringify(product));
