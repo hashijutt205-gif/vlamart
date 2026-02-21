@@ -205,28 +205,21 @@ document.getElementById('place-order-btn').addEventListener('click', () => {
     }
 });
 
-
-
-
-
-
-
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
 const cartContainer = document.getElementById("cart-items");
 
 function renderCart() {
-
   cartContainer.innerHTML = "";
   let subtotal = 0;
+  let deliveryDisplay = "";
+  let deliveryCost = 0;
 
   cart.forEach((item, index) => {
-
     const itemTotal = item.price * item.quantity;
     subtotal += itemTotal;
 
     cartContainer.innerHTML += `
-      <div class="cart-box">
+      <div class="cart-box" data-id="${item.id || ''}">
         <img src="${item.image}" class="cart-img">
 
         <div class="cart-info">
@@ -249,58 +242,68 @@ function renderCart() {
     `;
   });
 
+  // Check if item2 exists
+  const hasItem2 = cart.some(item => item.id === "item2");
+
+  if (hasItem2) {
+    deliveryDisplay = "Delivery Free";
+    deliveryCost = 0;
+  } else if (subtotal > 0) {
+    deliveryDisplay = "PKR 249";
+    deliveryCost = 249;
+  } else {
+    deliveryDisplay = "PKR 0";
+    deliveryCost = 0;
+  }
+
   document.getElementById("subtotal").innerText = "PKR " + subtotal;
-
-  let delivery = subtotal > 0 ? 249 : 0;
-  document.getElementById("delivery").innerText = "PKR " + delivery;
-
-  document.getElementById("total").innerText =
-      "PKR " + (subtotal + delivery);
+  document.getElementById("delivery").innerText = deliveryDisplay;
+  document.getElementById("total").innerText = "PKR " + (subtotal + deliveryCost);
 
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
+// Change quantity
 function changeQty(index, amount) {
   cart[index].quantity += amount;
-
-  if (cart[index].quantity <= 0) {
-    cart.splice(index, 1);
-  }
-
+  if (cart[index].quantity <= 0) cart.splice(index, 1);
   renderCart();
 }
 
+// Remove item
 function removeItem(index) {
   cart.splice(index, 1);
   renderCart();
 }
 
-renderCart();
-// Function to show cart message
+// Show "Item added" message
 function showCartMessage() {
-    const msg = document.getElementById('cart-message');
-    msg.style.display = 'block';
-
-    // Hide after 2 seconds
-    setTimeout(() => {
-        msg.style.display = 'none';
-    }, 2000);
+  const msg = document.getElementById('cart-message');
+  msg.style.display = 'block';
+  setTimeout(() => msg.style.display = 'none', 2000);
 }
 
-// Add event listeners to all "Add to Cart" buttons
+// Add-to-cart buttons
 const addToCartButtons = document.querySelectorAll('.add-to-cart');
 addToCartButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        // Show message
-        showCartMessage();
-
-        // You can still handle the item adding logic here
-        // Example: addToCart(itemId);
-    });
+  button.addEventListener('click', e => {
+    e.preventDefault();
+    showCartMessage();
+  });
 });
 
+// Place order button
+document.getElementById('place-order-btn').addEventListener('click', () => {
+  if (cart.length > 0) {
+    localStorage.setItem('currentOrder', JSON.stringify(cart));
+    window.location.href = 'delivery.html';
+  } else {
+    alert('Your cart is empty!');
+  }
+});
+
+// Initial render
+renderCart();
 </script>
 
 
